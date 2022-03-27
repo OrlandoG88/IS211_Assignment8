@@ -136,17 +136,24 @@ class Game:
 
 class TimedGameProxy(Game):
 
-    def __init__(self, players, start_time):
+    def __init__(self, player1, player2):
         self.players = [player1, player2]
-        self.start_time = start_time
+        self.start_time = time.time()
 
 
-    def play_game(self):
-        current_player = self.players[0]
-        game_start = time.time()
+    #def play_game(self):
 
 
-
+    def game_timer(self):
+        if time.time() - self.start_time >= 60:
+            if players[0].total > players[1].total:
+                print("Time is up. Player 1 wins.")
+            else:
+                print("Time is up. Player 2 wins.")
+        else:
+            time_elapsed = time.time() - self.start_time
+            time_remaining = 60 - time_elapsed
+            print(f"There are still {time_remaining} seconds remaining. Continue playing!")
 
 
 if __name__ == "__main__":

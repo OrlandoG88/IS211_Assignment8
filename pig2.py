@@ -102,17 +102,6 @@ class Game:
 
 
 
-
-
-    def check_winner(self):
-        '''return true if there is winner'''
-        for player in self.players:
-            if player.total >= 100:
-                self.winner = player
-                return True
-
-
-
     def play_game(self):
         current_player = self.players[0]
         #start game counter
@@ -140,11 +129,16 @@ class TimedGameProxy(Game):
     def __init__(self, player1, player2):
         self.players = [player1, player2]
         self.start_time = time.time()
+        self.winner =None
 
+    def check_winner(self):
+        '''return true if there is winner'''
+        for player in self.players:
+            if player.total >= 100:
+                self.winner = player
+                return True
 
-
-
-    #def play_game(self):
+        #def play_game(self):
     #def play_game(self):
         current_player = self.players[0]
         #start game counter
@@ -161,15 +155,17 @@ class TimedGameProxy(Game):
                 current_player = self.players[0]
             if time.time() - self.start_time >= 60:
                 if self.players[0].total > self.players[1].total:
-                    print(f"Time is up. {current_player}.")
+                    print(f"Time is up. {current_player} wins.")
                     break
                 else:
-                    print(f"Time is up. {current_player}.")
+                    print(f"Time is up. {current_player} wins.")
                     break
             else:
                 time_elapsed = time.time() - self.start_time
                 time_remaining = 60 - time_elapsed
-                print(f"There are still {time_remaining} seconds remaining. Continue playing!")
+                print(f"There are still {time_remaining} seconds remaining")
+
+        print(f"The winner is {self.winner}, thanks for playing goodbye")
 
 
 if __name__ == "__main__":

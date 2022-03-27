@@ -161,9 +161,11 @@ class TimedGameProxy(Game):
                 current_player = self.players[0]
             if time.time() - self.start_time >= 60:
                 if self.players[0].total > self.players[1].total:
-                    print(f"Time is up. {current_player} wins.")
+                    print(f"Time is up. {current_player}.")
+                    break
                 else:
-                    print(f"Time is up. {current_player} wins.")
+                    print(f"Time is up. {current_player}.")
+                    break
             else:
                 time_elapsed = time.time() - self.start_time
                 time_remaining = 60 - time_elapsed

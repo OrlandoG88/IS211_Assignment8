@@ -142,19 +142,32 @@ class TimedGameProxy(Game):
         self.start_time = time.time()
 
 
+
+
     #def play_game(self):
+    #def play_game(self):
+        current_player = self.players[0]
+        #start game counter
+        start_time = time.time()
 
-
-    def game_timer(self):
-        if time.time() - self.start_time >= 60:
-            if players[0].total > players[1].total:
-                print("Time is up. Player 1 wins.")
+    def play_game(self):
+        current_player = self.players[0]
+        while not self.check_winner():
+            current_player.play_turn()
+            #current_player.computer_turn()
+            if current_player == self.players[0]:
+                current_player = self.players[1]
+            elif current_player == self.players[1]:
+                current_player = self.players[0]
+            if time.time() - self.start_time >= 60:
+                if self.players[0].total > self.players[1].total:
+                    print(f"Time is up. {current_player} wins.")
+                else:
+                    print(f"Time is up. {current_player} wins.")
             else:
-                print("Time is up. Player 2 wins.")
-        else:
-            time_elapsed = time.time() - self.start_time
-            time_remaining = 60 - time_elapsed
-            print(f"There are still {time_remaining} seconds remaining. Continue playing!")
+                time_elapsed = time.time() - self.start_time
+                time_remaining = 60 - time_elapsed
+                print(f"There are still {time_remaining} seconds remaining. Continue playing!")
 
 
 if __name__ == "__main__":
@@ -168,5 +181,5 @@ if __name__ == "__main__":
 
     print(type(p1))
     print(type(p2))
-    pig_game = Game(p1, p2)
+    pig_game = TimedGameProxy(p1, p2)
     pig_game.play_game()

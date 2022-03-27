@@ -5,7 +5,7 @@ import time
 
 
 def roll_die(sides=6):
-    seed = 0
+    random.seed(0)
     """ function to simulate roll of a die"""
     return random.randint(1, sides)
 
@@ -97,6 +97,7 @@ class Game:
     def __init__(self, player1, player2):
         self.players = [player1, player2]
         self.winner = None
+
 
 
 

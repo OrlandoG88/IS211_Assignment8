@@ -5,7 +5,7 @@ import time
 
 
 def roll_die(sides=6):
-    random.seed(0)
+    #random.seed(0)
     """ function to simulate roll of a die"""
     return random.randint(1, sides)
 

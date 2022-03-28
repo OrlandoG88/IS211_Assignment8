@@ -55,9 +55,9 @@ class ComputerPlayer(player):
         roll_hold = 'r'
         while roll_hold != 'h':
             die = roll_die()
-            if die == 1:
-                print(f"{self.name} rolled a {die}, no points added this turn")
-                break
+            #if die == 1:
+                #print(f"{self.name} rolled a {die}, no points added this turn")
+                #break
             turn_total += die
 
 
@@ -67,6 +67,10 @@ class ComputerPlayer(player):
                 print(f"{self.name} total: {self.total}")
             else:
                 roll_hold = 'r'
+                if die == 1:
+                    print(f"{self.name} rolled a {die}, no points added this turn")
+                    break
+                #turn_total += die
 
 
 
@@ -140,6 +144,7 @@ class TimedGameProxy(Game):
     def __init__(self, player1, player2):
         self.players = [player1, player2]
         self.start_time = time.time()
+        self.winner = None
 
     def check_winner(self):
         '''return true if there is winner'''

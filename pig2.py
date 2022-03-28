@@ -141,8 +141,12 @@ class TimedGameProxy(Game):
         self.players = [player1, player2]
         self.start_time = time.time()
 
-
-
+    def check_winner(self):
+        '''return true if there is winner'''
+        for player in self.players:
+            if player.total >= 100:
+                self.winner = player
+                return True
 
     #def play_game(self):
     #def play_game(self):
